@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3Bridge Savings Group - Cohort XIV</title>
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Header Section -->
+        <header>
+            <h1>💰 Web3Bridge Savings Group</h1>
+            <p class="subtitle">Cohort XIV Pre-Qualification Exercise</p>
+        </header>
+
+        <!-- Statistics Dashboard - Shows total savings, members, interest -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <!-- Card 1: Total Members -->
+                <div class="stat-card">
+                    <div class="stat-value" id="totalMembers">0</div>
+                    <div class="stat-label">Total Members</div>
+                </div>
+                
+                <!-- Card 2: Total Savings -->
+                <div class="stat-card">
+                    <div class="stat-value" id="totalSavings">₦0</div>
+                    <div class="stat-label">Total Savings</div>
+                </div>
+                
+                <!-- Card 3: Total Interest Earned -->
+                <div class="stat-card">
+                    <div class="stat-value" id="totalInterest">₦0</div>
+                    <div class="stat-label">Total Interest</div>
+                </div>
+                
+                <!-- Card 4: Available Slots -->
+                <div class="stat-card">
+                    <div class="stat-value" id="availableSlots">12</div>
+                    <div class="stat-label">Available Slots</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Week Simulator - Allows progressing to next week -->
+        <section class="week-simulator">
+            <div class="week-display">
+                Current Week: <span id="currentWeek">1</span>
+            </div>
+            <button class="btn btn-secondary" onclick="advanceWeek()">
+                ⏭️ Advance to Next Week
+            </button>
+            <p class="week-info">Interest compounds each week for all active members</p>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section class="form-section">
+            <h2>📝 Register New Member</h2>
+            
+            <!-- Error message container (hidden by default) -->
+            <div class="alert alert-error" id="errorMsg"></div>
+            
+            <!-- Success message container (hidden by default) -->
+            <div class="alert alert-success" id="successMsg"></div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" onsubmit="registerStudent(event)">
+                
+                <!-- Name Input -->
+                <div class="form-group">
+                    <label for="studentName">
+                        Student Name <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="studentName" 
+                        placeholder="Enter your full name"
+                        maxlength="50"
+                        required>
+                </div>
+
+                <!-- Tier Selection -->
+                <div class="form-group">
+                    <label>
+                        Select Savings Tier <span class="required">*</span>
+                    </label>
+                    
+                    <!-- Tier Cards - Visual selection of tiers -->
+                    <div class="tier-cards">
+                        
+                        <!-- Tier 1: ₦10,000 -->
+                        <div class="tier-card" onclick="selectTier(1)" data-tier="1">
+                            <div class="tier-badge">Tier 1</div>
+                            <div class="tier-amount">₦10,000</div>
+                            <div class="tier-interest">5% per week</div>
+                            <div class="tier-weekly">₦500 weekly interest</div>
+                        </div>
+                        
+                        <!-- Tier 2: ₦20,000 -->
+                        <div class="tier-card" onclick="selectTier(2)" data-tier="2">
+                            <div class="tier-badge">Tier 2</div>
+                            <div class="tier-amount">₦20,000</div>
+                            <div class="tier-interest">10% per week</div>
+                            <div class="tier-weekly">₦2,000 weekly interest</div>
+                        </div>
+                        
+                        <!-- Tier 3: ₦30,000 -->
+                        <div class="tier-card" onclick="selectTier(3)" data-tier="3">
+                            <div class="tier-badge">Tier 3</div>
+                            <div class="tier-amount">₦30,000</div>
+                            <div class="tier-interest">20% per week</div>
+                            <div class="tier-weekly">₦6,000 weekly interest</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hidden input to store selected tier -->
+                    <input type="hidden" id="selectedTier" required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">
+                    ✅ Register Member
+                </button>
+            </form>
+        </section>
+
+        <!-- Members List Section -->
+        <section class="members-section">
+            <h2>👥 Current Members (<span id="memberCount">0</span>/12)</h2>
+            
+            <!-- Container for member cards (populated by JavaScript) -->
+            <div class="members-grid" id="membersList">
+                <div class="empty-state">
+                    <p>🎯 No members yet. Be the first to join!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Built for Web3Bridge Cohort XIV Pre-Qualification Exercise</p>
+            <p>© 2024 | Developed by Richyfabz</p>
+        </footer>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
